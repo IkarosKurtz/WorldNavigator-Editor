@@ -1,0 +1,16 @@
+[project]
+name = "worldnavigator-editor"
+version = "0.1.0"
+authors = [{ name = "IkarosKurtz", email = "ikaroskurtz@gmail.com" }]
+description = "A tool to create and visualize your own worlds."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4>=4.13.4",
+  "networkx>=3.4.2",
+  "pyvis>=0.3.2",
+  "streamlit>=1.44.1",
+]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["streamlit_app.py"]
