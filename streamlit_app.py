@@ -204,6 +204,7 @@ with edit:
         selected_loc["backgrounds"]["afternoon"] = new_afternoon_bg
         selected_loc["backgrounds"]["night"] = new_night_bg
         st.session_state.G.nodes[selected_id]["label"] = new_name
+        st.session_state.G.nodes[selected_id]["color"] = '#4A90E2' if new_indoor else '#7ED321'
         st.session_state.success_message = "Location updated."
         st.rerun()
 
