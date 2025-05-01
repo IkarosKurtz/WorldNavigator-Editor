@@ -1,3 +1,4 @@
+import os
 import uuid
 import streamlit as st
 from pyvis.network import Network
@@ -149,6 +150,9 @@ with graph:
   nt.show_buttons(filter_=['physics'])
 
   html_path = "./tmp/graph.html"
+  if not os.path.exists(html_path):
+    os.makedirs(html_path, exist_ok=True)
+
   nt.save_graph(html_path)
 
   with open(html_path, 'r', encoding='utf-8') as file:
