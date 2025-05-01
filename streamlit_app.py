@@ -11,6 +11,10 @@ st.set_page_config(page_title="World Editor", layout="wide", page_icon="🗺️"
 
 st.title("World Graph Editor")
 
+html_path = os.path.join(os.path.dirname(__file__), "tmp")
+if not os.path.exists(html_path):
+  os.makedirs(html_path, exist_ok=True)
+
 if 'G' not in st.session_state:
   st.session_state.G = nx.DiGraph()
 if 'locations' not in st.session_state:
@@ -41,10 +45,10 @@ note, _ = st.columns([2, 1])
 with note:
   st.markdown(
     """
-    This tool is intended to help you **create and visualize your own worlds***.
+    This tool is intended to help you **create and visualize your own worlds**.
     It is still in development and may contain bugs or incomplete features.
     
-    Please report any issues or suggestions on the [GitHub repository](https://github.com/IkarosKurtz/WorldNavigator/issues).
+    Please report any issues or suggestions on the [GitHub repository](https://github.com/IkarosKurtz/WorldNavigator-Editor/issues).
     """,
   )
 
@@ -149,13 +153,8 @@ with graph:
   nt.from_nx(st.session_state.G)
   nt.show_buttons(filter_=['physics'])
 
-  html_path = "./tmp/graph.html"
-  if not os.path.exists(html_path):
-    os.makedirs(html_path, exist_ok=True)
-
-  nt.save_graph(html_path)
-
-  with open(html_path, 'r', encoding='utf-8') as file:
+  nt.save_graph(f'{html_path}/graph.html')
+  with open(f'{html_path}/graph.html', 'r', encoding='utf-8') as file:
     html_content = file.read()
 
   soup = BeautifulSoup(html_content, 'html.parser')
