@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GraphEditor from '../components/GraphEditor';
+---
+
+<Layout
+  title="WorldNavigator Editor"
+  description="Interactive graph editor for WorldNavigator worlds."
+  fullscreen
+>
+  <GraphEditor client:only="react" />
+</Layout>

@@ -1,0 +1,114 @@
+---
+interface Props {
+  nodeName?: string;
+  nodeId?: string;
+}
+
+const { nodeName = 'Tavern Interior', nodeId = 'loc_002' } = Astro.props;
+---
+
+<aside class="absolute left-8 top-8 bottom-8 z-20 w-[400px] bg-[#f9f9ff] border border-[#c4c6cf] rounded-2xl panel-shadow-lg flex flex-col overflow-hidden">
+  <!-- Header -->
+  <div class="p-6 border-b border-[#c4c6cf] flex items-center justify-between bg-[#f9f9ff]">
+    <div>
+      <h2 class="font-headline text-2xl font-medium text-[#111c2c] m-0">Node Configuration</h2>
+      <p class="font-code text-sm text-[#44474e] mt-1">Editing: {nodeId}</p>
+    </div>
+    <button
+      class="p-2 text-[#44474e] hover:bg-[#d8e3fa] hover:text-[#111c2c] rounded-full transition-colors"
+      aria-label="Close panel"
+    >
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <!-- Scrollable Body -->
+  <div class="flex-1 overflow-y-auto p-6 space-y-6">
+    <!-- Basic Info -->
+    <div class="space-y-4">
+      <div class="flex flex-col gap-1">
+        <label class="font-body text-xs font-semibold tracking-widest uppercase text-[#111c2c]" for="node-name">Name</label>
+        <input
+          id="node-name"
+          type="text"
+          value={nodeName}
+          class="w-full bg-white border border-[#c4c6cf] rounded px-3 py-2 font-body text-base text-[#111c2c] focus:border-[#002046] focus:ring-1 focus:ring-[#002046] shadow-sm focus:outline-none transition-shadow"
+        />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-body text-xs font-semibold tracking-widest uppercase text-[#111c2c]" for="node-desc">Description</label>
+        <textarea
+          id="node-desc"
+          rows="4"
+          class="w-full bg-white border border-[#c4c6cf] rounded px-3 py-2 font-body text-base text-[#111c2c] focus:border-[#002046] focus:ring-1 focus:ring-[#002046] shadow-sm focus:outline-none transition-shadow resize-none"
+        >The main gathering area of the local tavern. Smells like stale ale and woodsmoke.</textarea>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px w-full bg-[#c4c6cf]"></div>
+
+    <!-- Properties -->
+    <div class="space-y-4">
+      <label class="flex items-center gap-3 cursor-pointer group">
+        <div class="relative w-5 h-5 flex items-center justify-center">
+          <input type="checkbox" class="peer sr-only" />
+          <div class="w-5 h-5 border border-[#c4c6cf] rounded bg-white peer-checked:bg-[#002046] peer-checked:border-[#002046] transition-colors flex items-center justify-center shadow-sm group-hover:border-[#002046]">
+            <span class="material-symbols-outlined text-[16px] text-white hidden peer-checked:block">check</span>
+          </div>
+        </div>
+        <span class="font-body text-base text-[#111c2c] select-none">Interior/Exterior Location</span>
+      </label>
+
+      <label class="flex items-center gap-3 cursor-pointer group">
+        <div class="relative w-5 h-5 flex items-center justify-center">
+          <input type="checkbox" checked class="peer sr-only" />
+          <div class="w-5 h-5 border border-[#002046] rounded bg-[#002046] transition-colors flex items-center justify-center shadow-sm group-hover:border-[#002046]">
+            <span class="material-symbols-outlined text-[16px] text-white">check</span>
+          </div>
+        </div>
+        <span class="font-body text-base text-[#111c2c] select-none">Python/Ren'Py Integration</span>
+      </label>
+    </div>
+
+    <!-- Background Assets Section -->
+    <div class="bg-[#e7eeff] border border-[#c4c6cf] rounded-lg p-4 space-y-4 shadow-inner relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-1 h-full bg-[#3b6934]"></div>
+      <div class="flex items-center gap-2 mb-2">
+        <span class="material-symbols-outlined text-[#3b6934] text-sm">integration_instructions</span>
+        <span class="font-body text-xs font-semibold tracking-widest uppercase text-[#111c2c]">Background Assets</span>
+      </div>
+
+      {[
+        { id: 'bg-day', label: 'Day BG', value: 'tavern_interior_day' },
+        { id: 'bg-afternoon', label: 'Afternoon BG', value: 'tavern_interior_sunset' },
+        { id: 'bg-night', label: 'Night BG', value: 'tavern_interior_night' },
+      ].map((field) => (
+        <div class="flex flex-col gap-1">
+          <label class="font-body text-xs font-semibold text-[#44474e]" for={field.id}>{field.label}</label>
+          <div class="flex">
+            <span class="inline-flex items-center px-3 border border-r-0 border-[#c4c6cf] rounded-l bg-[#d8e3fa] text-[#44474e] font-code text-sm">
+              bg
+            </span>
+            <input
+              id={field.id}
+              type="text"
+              value={field.value}
+              class="flex-1 bg-white border border-[#c4c6cf] rounded-r px-3 py-2 font-code text-sm text-[#111c2c] focus:border-[#002046] focus:ring-1 focus:ring-[#002046] shadow-sm focus:outline-none transition-shadow"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="p-6 border-t border-[#c4c6cf] bg-[#f9f9ff] mt-auto flex justify-end gap-3">
+    <button class="px-4 py-2 border border-[#74777f] text-[#111c2c] bg-[#f9f9ff] rounded shadow-sm hover:bg-[#d8e3fa] active:translate-y-px transition-all font-body text-xs font-semibold uppercase tracking-widest">
+      Revert
+    </button>
+    <button class="px-4 py-2 border border-[#1b365d] text-white bg-[#1b365d] rounded shadow-sm hover:bg-[#002046] active:translate-y-px transition-all font-body text-xs font-semibold uppercase tracking-widest">
+      Save Changes
+    </button>
+  </div>
+</aside>

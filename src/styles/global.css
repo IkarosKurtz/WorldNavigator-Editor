@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Colors === */
+  --color-primary: #002046;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1b365d;
+  --color-on-primary-container: #87a0cd;
+  --color-primary-fixed: #d6e3ff;
+  --color-primary-fixed-dim: #aec7f7;
+  --color-on-primary-fixed: #001b3d;
+  --color-on-primary-fixed-variant: #2e476f;
+  --color-inverse-primary: #aec7f7;
+
+  --color-secondary: #3b6934;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #b9eeab;
+  --color-on-secondary-container: #3f6d38;
+  --color-secondary-fixed: #bcf0ae;
+  --color-secondary-fixed-dim: #a1d494;
+  --color-on-secondary-fixed: #002201;
+  --color-on-secondary-fixed-variant: #23501e;
+
+  --color-tertiary: #002043;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #1a365b;
+  --color-on-tertiary-container: #85a0ca;
+  --color-tertiary-fixed: #d5e3ff;
+  --color-tertiary-fixed-dim: #adc8f5;
+  --color-on-tertiary-fixed: #001c3b;
+  --color-on-tertiary-fixed-variant: #2d486d;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-surface: #0a101d;
+  --color-surface-dim: #060a12;
+  --color-surface-bright: #10192e;
+  --color-surface-container-lowest: #03050a;
+  --color-surface-container-low: #080d19;
+  --color-surface-container: #0d1527;
+  --color-surface-container-high: #15223e;
+  --color-surface-container-highest: #1c2e54;
+  --color-surface-variant: #1a2a47;
+  --color-surface-tint: #4d7cc7;
+  --color-on-surface: #f1f5f9;
+  --color-on-surface-variant: #94a3b8;
+  --color-inverse-surface: #e2e8f0;
+  --color-inverse-on-surface: #0f172a;
+
+  --color-outline: #22375e;
+  --color-outline-variant: #111b2e;
+
+  --color-background: #05080f;
+  --color-on-background: #f1f5f9;
+
+  /* === Typography === */
+  --font-newsreader: 'Newsreader', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* === Spacing === */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-gutter: 20px;
+  --spacing-sidebar: 280px;
+
+  /* === Border Radius === */
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 9999px;
+}
+
+/* === Base Styles === */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-inter);
+  color: var(--color-on-background);
+  background-color: var(--color-background);
+}
+
+/* === Typography Utilities === */
+.font-headline {
+  font-family: var(--font-newsreader);
+}
+
+.font-body {
+  font-family: var(--font-inter);
+}
+
+.font-code {
+  font-family: var(--font-mono);
+}
+
+/* === Graph Canvas Grid === */
+.graph-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(196, 198, 207, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(196, 198, 207, 0.3) 1px, transparent 1px);
+}
+
+.graph-dots {
+  background-image: radial-gradient(circle at 1px 1px, var(--color-outline-variant) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* === Tactile Button Base === */
+.btn-tactile {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-tactile:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* === Panel Shadow === */
+.panel-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.panel-shadow-lg {
+  box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* === Node Shadow === */
+.node-shadow {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* === Glassmorphism Panels === */
+.glass-panel {
+  background: rgba(13, 21, 39, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 55, 94, 0.6);
+}
+
+/* === Glowing Effects === */
+.glow-primary {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+}
+
+/* === Custom Scrollbars === */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+

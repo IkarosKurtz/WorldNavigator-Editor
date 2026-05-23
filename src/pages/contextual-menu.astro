@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GraphNode from '../components/GraphNode.astro';
+---
+
+<Layout
+  title="WorldNavigator Editor — Contextual Menu"
+  description="Right-click contextual menu on graph nodes."
+  fullscreen
+>
+  <body class="bg-[#f9f9ff] text-[#111c2c] h-screen flex overflow-hidden font-body">
+
+    <!-- Main Canvas Area -->
+    <main class="flex-grow relative bg-[#f9f9ff] graph-dots overflow-hidden">
+
+      <!-- World Name Title -->
+      <div class="absolute top-6 left-6 z-50 flex items-center gap-2">
+        <h2 class="font-headline text-3xl font-semibold text-[#111c2c] m-0">World Name</h2>
+        <button class="text-[#44474e] hover:text-[#111c2c] transition-colors" aria-label="Edit world name">
+          <span class="material-symbols-outlined">edit</span>
+        </button>
+      </div>
+
+      <!-- Watermark -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none"
+        aria-hidden="true"
+      >
+        <h1
+          class="font-headline text-[#111c2c] whitespace-nowrap font-bold -rotate-12"
+          style="font-size: 120px;"
+        >
+          WorldNavigator Editor
+        </h1>
+      </div>
+
+      <!-- SVG connections -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" aria-hidden="true">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#74777f" />
+          </marker>
+        </defs>
+        <line x1="33%" y1="29%" x2="53%" y2="48%" stroke="#74777f" stroke-width="2" marker-end="url(#arrowhead)" />
+        <line x1="57%" y1="50%" x2="73%" y2="34%" stroke="#74777f" stroke-width="2" marker-end="url(#arrowhead)" />
+      </svg>
+
+      <!-- Node A -->
+      <GraphNode
+        id="node-a"
+        label="Node A"
+        type="default"
+        x={Math.round(0.30 * 1280) - 48}
+        y={Math.round(0.25 * 768) - 48}
+      />
+
+      <!-- Node B (with contextual menu open) -->
+      <GraphNode
+        id="node-b"
+        label="Node B"
+        type="exterior"
+        x={Math.round(0.55 * 1280) - 48}
+        y={Math.round(0.50 * 768) - 48}
+        showContextMenu
+      />
+
+      <!-- Node C -->
+      <GraphNode
+        id="node-c"
+        label="Node C"
+        type="default"
+        x={Math.round(0.75 * 1280) - 48}
+        y={Math.round(0.30 * 768) - 48}
+      />
+
+      <!-- Floating Export FAB -->
+      <div class="absolute bottom-6 right-6 z-50">
+        <button class="flex items-center gap-2 px-6 py-3 bg-[#002046] text-white rounded-full font-body text-xs font-semibold uppercase tracking-widest shadow-[0px_4px_8px_rgba(0,0,0,0.1)] hover:bg-[#002043] transition-colors active:translate-y-px btn-tactile">
+          <span class="material-symbols-outlined text-xl">ios_share</span>
+          Export Canvas
+        </button>
+      </div>
+
+    </main>
+
+  </body>
+</Layout>

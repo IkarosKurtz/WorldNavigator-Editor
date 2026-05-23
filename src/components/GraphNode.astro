@@ -1,0 +1,54 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  type?: 'exterior' | 'interior' | 'default';
+  x: number;
+  y: number;
+  size?: number;
+  showContextMenu?: boolean;
+}
+
+const {
+  id,
+  label,
+  type = 'exterior',
+  x,
+  y,
+  size = 128,
+  showContextMenu = false,
+} = Astro.props;
+
+const colorMap = {
+  exterior: 'bg-[#3b6934] text-white border-white',
+  interior: 'bg-[#002046] text-white border-white',
+  default: 'bg-[#d8e3fa] text-[#111c2c] border-[#c4c6cf]',
+};
+
+const colorClass = colorMap[type];
+---
+
+<div
+  class:list={[
+    'absolute flex items-center justify-center text-center rounded-full node-shadow border-[3px] cursor-move z-20 transition-colors',
+    colorClass,
+  ]}
+  style={`left: ${x}px; top: ${y}px; width: ${size}px; height: ${size}px;`}
+  data-node-id={id}
+>
+  <span class="font-body text-sm font-semibold leading-tight px-3">{label}</span>
+
+  {showContextMenu && (
+    <div class="absolute top-0 left-[calc(100%+16px)] w-48 bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.12)] border border-[#c4c6cf] rounded-lg flex flex-col py-2 z-30">
+      <button class="text-left px-4 py-2 text-sm text-[#111c2c] hover:bg-[#e7eeff] transition-colors w-full font-body">
+        Edit Node
+      </button>
+      <button class="text-left px-4 py-2 text-sm text-[#111c2c] hover:bg-[#e7eeff] transition-colors w-full font-body">
+        Add Location Node
+      </button>
+      <button class="text-left px-4 py-2 text-sm text-[#ba1a1a] hover:bg-[#ffdad6] transition-colors w-full font-body">
+        Delete Node
+      </button>
+    </div>
+  )}
+</div>

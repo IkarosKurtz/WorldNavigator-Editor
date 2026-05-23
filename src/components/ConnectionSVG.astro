@@ -1,0 +1,36 @@
+---
+interface Connection {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+}
+
+interface Props {
+  connections: Connection[];
+  class?: string;
+}
+
+const { connections, class: className = '' } = Astro.props;
+---
+
+<svg
+  class:list={['absolute inset-0 w-full h-full pointer-events-none z-10', className]}
+  aria-hidden="true"
+>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#74777f" />
+    </marker>
+  </defs>
+
+  {connections.map((conn) => (
+    <path
+      d={`M ${conn.x1} ${conn.y1} C ${(conn.x1 + conn.x2) / 2} ${conn.y1}, ${(conn.x1 + conn.x2) / 2} ${conn.y2}, ${conn.x2} ${conn.y2}`}
+      fill="none"
+      stroke="#74777f"
+      stroke-width="2"
+      marker-end="url(#arrowhead)"
+    />
+  ))}
+</svg>
