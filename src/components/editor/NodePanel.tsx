@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import type { Node } from '@xyflow/react'
+import { useState } from 'react'
 import type { NodeData } from '../types'
 
 interface Props {

@@ -64,7 +64,7 @@ const WorldNode = memo(({ data, selected }: NodeProps<WNNode>) => {
       </div>
 
       <div className="my-2.5">
-        <p className="text-xs text-slate-400 leading-relaxed line-clamp-2 italic h-8">
+        <p className="text-xs text-slate-400 leading-relaxed line-clamp-2 group-hover:line-clamp-none italic max-h-8 group-hover:max-h-24 transition-all duration-300 ease-in-out overflow-hidden">
           {data.description || 'No description provided.'}
         </p>
       </div>

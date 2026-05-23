@@ -6,7 +6,6 @@ interface Props {
 export default function ClearConfirmModal({ onConfirm, onCancel }: Props) {
   return (
     <>
-      {styleTag}
       <div
         onClick={onCancel}
         className="fixed inset-0 bg-slate-950/65 z-[998] backdrop-blur-sm"
@@ -45,12 +44,3 @@ export default function ClearConfirmModal({ onConfirm, onCancel }: Props) {
     </>
   )
 }
-
-const styleTag = (
-  <style>{`
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
-      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-  `}</style>
-)
